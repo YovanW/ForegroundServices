@@ -15,6 +15,15 @@
         android:id="@+id/statusTextView"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jumps: "
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/jumpCount"
+        />
+
     <Button
         android:id="@+id/btnMasuk"
         android:layout_width="wrap_content"

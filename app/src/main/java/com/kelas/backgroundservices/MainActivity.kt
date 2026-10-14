@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var btnMasuk: Button
     private lateinit var statusTextView: TextView
+    private lateinit var jumpCountTextView: TextView
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Array<String>>
 
     @SuppressLint("InlinedApi")
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
 
         btnMasuk = findViewById(R.id.btnMasuk)
         statusTextView = findViewById(R.id.statusTextView)
+        jumpCountTextView = findViewById(R.id.jumpCount)
 
         requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions(),
@@ -65,6 +67,8 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        jumpingTracker()
+
         handleIntent(intent)
     }
 
@@ -79,6 +83,12 @@ class MainActivity : ComponentActivity() {
         val serviceIntent = Intent(this, TrackerService::class.java)
         ContextCompat.startForegroundService(this, serviceIntent)
         statusTextView.text = "Background service sedang berjalan"
+    }
+
+    private fun jumpingTracker(){
+        val serviceIntent = Intent(this, TrackerService::class.java)
+        ContextCompat.startForegroundService(this, serviceIntent)
+        jumpCountTextView.text = "Jumps: " + jumps
     }
 
     @SuppressLint("SetTextI18n")

@@ -24,6 +24,7 @@ private const val NOTIFICATION_CHANNERL_ID_SERVICE_RUNNING = "tracker_service_ru
 private const val NOTIFICATION_CHANNEL_ID_JUMP_DETECTED = "tracker_jump_detected"
 private const val NOTIFICATION_ID_SERVICE_RUNNING = 1
 private const val NOTIFICATION_ID_JUMP_DETECTED = 2
+var jumps = 0
 
 class TrackerService : Service(), SensorEventListener {
 
@@ -115,7 +116,11 @@ class TrackerService : Service(), SensorEventListener {
                 sensorManager.unregisterListener(this)
 
                 showJumpNotification()
-                stopSelf()
+                jumps+=1
+                Log.d("TrackerService", "Jumps: $jumps")
+                if (jumps >= 3){
+                    stopSelf()
+                }
             }
         }
     }
