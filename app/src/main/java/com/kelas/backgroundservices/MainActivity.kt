@@ -143,6 +143,8 @@ class MainActivity : ComponentActivity() {
                     timePickerDialog.show()
                 }, year, month, day)
                 datePickerDialog.show()
+            jumps = 0
+            jumpCountTextView.text = "Jumps: " + jumps
 
         }
     }

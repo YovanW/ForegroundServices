@@ -119,6 +119,7 @@ class TrackerService : Service(), SensorEventListener {
                 jumps+=1
                 Log.d("TrackerService", "Jumps: $jumps")
                 if (jumps >= 3){
+                    jumps = 0
                     stopSelf()
                 }
             }
